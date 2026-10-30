@@ -14,7 +14,6 @@
       --border-color: #ff8c00;
       --input-bg: #000000;
     }
-
     [data-theme="light"] {
       --bg-color: #f4f4f4;
       --card-bg: #ffffff;
@@ -23,231 +22,48 @@
       --border-color: #d35400;
       --input-bg: #f9f9f9;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      min-height: 100vh;
-      display: flex;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .sidebar {
-      width: 80px;
-      background-color: var(--sidebar-bg);
-      border-right: 2px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 30px;
-      gap: 25px;
-      position: fixed;
-      height: 100vh;
-      left: 0;
-      top: 0;
-      z-index: 999;
-    }
-
-    .nav-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 12px;
-      background: transparent;
-      border: 2px solid transparent;
-      color: var(--text-color);
-      font-size: 22px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.2s ease;
-      user-select: none;
-    }
-
-    .nav-btn:hover, .nav-btn.active {
-      background-color: var(--text-color);
-      color: var(--bg-color);
-      box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
-    }
-
-    .main-content {
-      margin-left: 80px;
-      flex: 1;
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .tab-content {
-      display: none;
-      width: 100%;
-      max-width: 650px;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 0 20px rgba(255, 140, 0, 0.15);
-      margin-bottom: 25px;
-      text-align: center;
-    }
-
-    h1, h2, h3 {
-      color: var(--text-color);
-      margin-bottom: 15px;
-    }
-
-    h1 {
-      font-size: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    p {
-      color: var(--text-color);
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .btn {
-      background-color: var(--text-color);
-      color: var(--bg-color);
-      border: none;
-      padding: 14px 28px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 15px;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-      box-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
-    }
-
-    .ip-box {
-      background-color: var(--input-bg);
-      border: 1px dashed var(--border-color);
-      padding: 12px 20px;
-      border-radius: 8px;
-      display: inline-block;
-      margin: 15px 0;
-      font-family: monospace;
-      font-size: 18px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--text-color);
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      background-color: var(--input-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      color: var(--text-color);
-      font-size: 15px;
-    }
-
-    .info-list {
-      list-style: none;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .info-item {
-      background-color: var(--input-bg);
-      border: 1px solid var(--border-color);
-      padding: 15px;
-      border-radius: 8px;
-    }
-
-    .info-title {
-      font-weight: bold;
-      margin-bottom: 5px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: var(--text-color);
-      color: var(--bg-color);
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: bold;
-      display: none;
-      z-index: 1000;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; transition: 0.3s; }
+    .sidebar { width: 80px; background-color: var(--sidebar-bg); border-right: 2px solid var(--border-color); display: flex; flex-direction: column; align-items: center; padding-top: 30px; gap: 25px; position: fixed; height: 100vh; left: 0; top: 0; z-index: 999; }
+    .nav-btn { width: 50px; height: 50px; border-radius: 12px; background: transparent; border: 2px solid transparent; color: var(--text-color); font-size: 22px; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.2s; }
+    .nav-btn:hover, .nav-btn.active { background-color: var(--text-color); color: var(--bg-color); box-shadow: 0 0 15px rgba(255, 140, 0, 0.5); }
+    .main-content { margin-left: 80px; flex: 1; padding: 40px 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .tab-content { display: none; width: 100%; max-width: 650px; }
+    .tab-content.active { display: block; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; box-shadow: 0 0 20px rgba(255, 140, 0, 0.15); margin-bottom: 25px; text-align: center; }
+    h1, h2, h3 { color: var(--text-color); margin-bottom: 15px; }
+    h1 { font-size: 36px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+    p { color: var(--text-color); font-size: 16px; line-height: 1.6; }
+    .btn { background-color: var(--text-color); color: var(--bg-color); border: none; padding: 14px 28px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; margin-top: 15px; text-decoration: none; }
+    .btn:hover { opacity: 0.9; box-shadow: 0 0 15px rgba(255, 140, 0, 0.6); }
+    .ip-box { background-color: var(--input-bg); border: 1px dashed var(--border-color); padding: 12px 20px; border-radius: 8px; display: inline-block; margin: 15px 0; font-family: monospace; font-size: 18px; }
+    .form-group { margin-bottom: 20px; text-align: left; }
+    label { display: block; margin-bottom: 8px; color: var(--text-color); }
+    input, textarea { width: 100%; padding: 12px; background-color: var(--input-bg); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-size: 15px; }
+    .info-list { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+    .info-item { background-color: var(--input-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; }
+    .info-title { font-weight: bold; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+    .toast { position: fixed; bottom: 20px; right: 20px; background-color: var(--text-color); color: var(--bg-color); padding: 12px 24px; border-radius: 8px; font-weight: bold; display: none; z-index: 1000; }
   </style>
 </head>
 <body data-theme="dark">
 
   <div class="sidebar">
-    <button class="nav-btn active" id="btn-home" onclick="openTab('home')" title="Ana Sayfa">
-      <i class="fa-solid fa-house"></i>
-    </button>
-    <button class="nav-btn" id="btn-support" onclick="openTab('support')" title="Destek">
-      <i class="fa-solid fa-headset"></i>
-    </button>
-    <button class="nav-btn" id="btn-about" onclick="openTab('about')" title="Hakkında">
-      <i class="fa-solid fa-circle-info"></i>
-    </button>
-    <button class="nav-btn" id="btn-settings" onclick="openTab('settings')" title="Ayarlar">
-      <i class="fa-solid fa-gear"></i>
-    </button>
+    <button class="nav-btn active" id="btn-home" onclick="openTab('home')" title="Ana Sayfa"><i class="fa-solid fa-house"></i></button>
+    <button class="nav-btn" id="btn-support" onclick="openTab('support')" title="Destek"><i class="fa-solid fa-headset"></i></button>
+    <button class="nav-btn" id="btn-about" onclick="openTab('about')" title="Hakkında"><i class="fa-solid fa-circle-info"></i></button>
+    <button class="nav-btn" id="btn-settings" onclick="openTab('settings')" title="Ayarlar"><i class="fa-solid fa-gear"></i></button>
   </div>
 
   <div class="main-content">
-
     <div id="home" class="tab-content active">
       <div class="card">
         <h1><i class="fa-solid fa-mug-hot"></i> Çay Ocağı</h1>
         <p>Minecraft sunucumuza hoş geldiniz. Hemen katılın ve maceraya başlayın.</p>
-        
         <div style="margin: 20px 0;">
           <div class="ip-box" id="serverIp">practicing-otc.tun.ply.gg</div>
           <br>
-          <button class="btn" onclick="copyIp()">
-            <i class="fa-regular fa-copy"></i> Ip adresini kopyala
-          </button>
+          <button class="btn" onclick="copyIp()"><i class="fa-regular fa-copy"></i> Ip adresini kopyala</button>
         </div>
       </div>
 
@@ -266,4 +82,99 @@
           <p>Survival mod</p>
         </div>
         <div>
-          <i class="fa-solid fa-signal" style="font-size:
+          <i class="fa-solid fa-signal" style="font-size: 28px; margin-bottom: 8px;"></i>
+          <h3>Sunucu durumu</h3>
+          <img src="https://api.mcstatus.io/v2/widget/java/practicing-otc.tun.ply.gg" alt="Sunucu Durumu" style="max-width: 100%; border-radius: 8px; margin-top: 5px;">
+        </div>
+      </div>
+    </div>
+
+    <div id="support" class="tab-content">
+      <div class="card">
+        <h2><i class="fa-solid fa-headset"></i> Destek talebi</h2>
+        <p>Sorularınız veya şikayetleriniz için bize mesaj gönderin.</p>
+        <form action="mailto:poyraaz7259@gmail.com" method="POST" enctype="text/plain" style="margin-top: 20px;">
+          <div class="form-group">
+            <label>Oyuncu adınız</label>
+            <input type="text" name="Oyuncu" required placeholder="Kullanıcı adınızı girin">
+          </div>
+          <div class="form-group">
+            <label>Konu</label>
+            <input type="text" name="Konu" required placeholder="Konu başlığı">
+          </div>
+          <div class="form-group">
+            <label>Mesajınız</label>
+            <textarea name="Mesaj" rows="4" required placeholder="Detayları buraya yazın"></textarea>
+          </div>
+          <button type="submit" class="btn"><i class="fa-solid fa-paper-plane"></i> Gönder</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="about" class="tab-content">
+      <div class="card">
+        <h2><i class="fa-solid fa-circle-info"></i> Sunucu hakkında</h2>
+        <ul class="info-list">
+          <li class="info-item">
+            <div class="info-title"><i class="fa-solid fa-calendar-days"></i> Kuruluş tarihi</div>
+            <p>2026</p>
+          </li>
+          <li class="info-item">
+            <div class="info-title"><i class="fa-solid fa-user-gear"></i> Kurucu</div>
+            <p>ToraTsume</p>
+            <a href="https://www.youtube.com/@ToraTsumeEdits" target="_blank" class="btn" style="margin-top: 10px; padding: 8px 16px; font-size: 14px;">
+              <i class="fa-brands fa-youtube"></i> YouTube Kanalı
+            </a>
+          </li>
+          <li class="info-item">
+            <div class="info-title"><i class="fa-solid fa-user-shield"></i> Adminler</div>
+            <p>BaySEROX, OrosPL</p>
+          </li>
+          <li class="info-item">
+            <div class="info-title"><i class="fa-solid fa-heart"></i> Teşekkürler</div>
+            <p>thenormalguy385, fontona, bokyiyenkopke</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="settings" class="tab-content">
+      <div class="card">
+        <h2><i class="fa-solid fa-gear"></i> Site Ayarları</h2>
+        <p>Görünüm tercihinizi buradan değiştirebilirsiniz.</p>
+        <div style="margin-top: 25px;">
+          <button class="btn" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Tema Değiştir (Aydınlık / Karanlık)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Ip adresi kopyalandı!</div>
+
+  <script>
+    function openTab(tabName) {
+      var tabs = document.getElementsByClassName("tab-content");
+      for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove("active"); }
+      var btns = document.getElementsByClassName("nav-btn");
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove("active"); }
+      document.getElementById(tabName).classList.add("active");
+      document.getElementById("btn-" + tabName).classList.add("active");
+    }
+    function copyIp() {
+      var ipText = document.getElementById("serverIp").innerText;
+      navigator.clipboard.writeText(ipText);
+      var toast = document.getElementById("toast");
+      toast.style.display = "block";
+      setTimeout(function() { toast.style.display = "none"; }, 2000);
+    }
+    function toggleTheme() {
+      var body = document.body;
+      if (body.getAttribute("data-theme") === "dark") {
+        body.setAttribute("data-theme", "light");
+      } else {
+        body.setAttribute("data-theme", "dark");
+      }
+    }
+  </script>
+</body>
+</html>
