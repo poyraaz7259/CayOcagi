@@ -259,6 +259,15 @@
         </div>
       </div>
 
+      <!-- Güncellemeler / Duyurular Paneli -->
+      <div class="card" style="text-align: left;">
+        <h3><i class="fa-solid fa-bullhorn"></i> Duyurular & Güncellemeler</h3>
+        <ul style="list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+          <li><span style="font-weight: bold;">30 Ekim 2026:</span> Duyurular paneli ve tema değiştirme özelliği eklendi!</li>
+          <li><span style="font-weight: bold;">Yeni:</span> Canlı sunucu durumu ve doğrudan destek mail sistemi aktif edildi.</li>
+        </ul>
+      </div>
+
       <div class="card" style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 15px;">
         <div>
           <i class="fa-solid fa-gamepad" style="font-size: 28px; margin-bottom: 8px;"></i>
@@ -357,6 +366,35 @@
       for (var i = 0; i < btns.length; i++) {
         btns[i].classList.remove("active");
       }
+
+      document.getElementById(tabName).classList.add("active");
+      document.getElementById("btn-" + tabName).classList.add("active");
+    }
+
+    function copyIp() {
+      var ipText = document.getElementById("serverIp").innerText;
+      navigator.clipboard.writeText(ipText);
+      
+      var toast = document.getElementById("toast");
+      toast.style.display = "block";
+      setTimeout(function() {
+        toast.style.display = "none";
+      }, 2000);
+    }
+
+    function toggleTheme() {
+      var body = document.body;
+      if (body.getAttribute("data-theme") === "dark") {
+        body.setAttribute("data-theme", "light");
+      } else {
+        body.setAttribute("data-theme", "dark");
+      }
+    }
+  </script>
+</body>
+</html>
+
+}
 
       document.getElementById(tabName).classList.add("active");
       document.getElementById("btn-" + tabName).classList.add("active");
