@@ -6,6 +6,25 @@
   <title>Çay Ocağı - Minecraft Sunucusu</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Tema Renk Değişkenleri */
+    :root {
+      --bg-color: #000000;
+      --card-bg: #0a0a0a;
+      --sidebar-bg: #050505;
+      --text-color: #ff8c00;
+      --border-color: #ff8c00;
+      --input-bg: #000000;
+    }
+
+    [data-theme="light"] {
+      --bg-color: #f4f4f4;
+      --card-bg: #ffffff;
+      --sidebar-bg: #e6e6e6;
+      --text-color: #d35400;
+      --border-color: #d35400;
+      --input-bg: #f9f9f9;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -14,17 +33,18 @@
     }
 
     body {
-      background-color: #000000;
-      color: #ff8c00;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       min-height: 100vh;
       display: flex;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     /* Sol Yan Menü */
     .sidebar {
       width: 80px;
-      background-color: #050505;
-      border-right: 2px solid #ff8c00;
+      background-color: var(--sidebar-bg);
+      border-right: 2px solid var(--border-color);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -35,6 +55,7 @@
       left: 0;
       top: 0;
       z-index: 999;
+      transition: background-color 0.3s ease;
     }
 
     .nav-btn {
@@ -43,7 +64,7 @@
       border-radius: 12px;
       background: transparent;
       border: 2px solid transparent;
-      color: #ff8c00;
+      color: var(--text-color);
       font-size: 22px;
       cursor: pointer;
       display: flex;
@@ -54,8 +75,8 @@
     }
 
     .nav-btn:hover, .nav-btn.active {
-      background-color: #ff8c00;
-      color: #000000;
+      background-color: var(--text-color);
+      color: var(--bg-color);
       box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
     }
 
@@ -81,17 +102,18 @@
     }
 
     .card {
-      background-color: #0a0a0a;
-      border: 1px solid #ff8c00;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
       border-radius: 16px;
       padding: 30px;
       box-shadow: 0 0 20px rgba(255, 140, 0, 0.15);
       margin-bottom: 25px;
       text-align: center;
+      transition: background-color 0.3s ease;
     }
 
     h1, h2, h3 {
-      color: #ff8c00;
+      color: var(--text-color);
       margin-bottom: 15px;
     }
 
@@ -104,14 +126,14 @@
     }
 
     p {
-      color: #ff8c00;
+      color: var(--text-color);
       font-size: 16px;
       line-height: 1.6;
     }
 
     .btn {
-      background-color: #ff8c00;
-      color: #000000;
+      background-color: var(--text-color);
+      color: var(--bg-color);
       border: none;
       padding: 14px 28px;
       font-size: 16px;
@@ -123,16 +145,17 @@
       align-items: center;
       gap: 10px;
       margin-top: 15px;
+      text-decoration: none;
     }
 
     .btn:hover {
-      background-color: #ffa500;
+      opacity: 0.9;
       box-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
     }
 
     .ip-box {
-      background-color: #000000;
-      border: 1px dashed #ff8c00;
+      background-color: var(--input-bg);
+      border: 1px dashed var(--border-color);
       padding: 12px 20px;
       border-radius: 8px;
       display: inline-block;
@@ -149,16 +172,16 @@
     label {
       display: block;
       margin-bottom: 8px;
-      color: #ff8c00;
+      color: var(--text-color);
     }
 
     input, textarea {
       width: 100%;
       padding: 12px;
-      background-color: #000000;
-      border: 1px solid #ff8c00;
+      background-color: var(--input-bg);
+      border: 1px solid var(--border-color);
       border-radius: 8px;
-      color: #ff8c00;
+      color: var(--text-color);
       font-size: 15px;
     }
 
@@ -172,8 +195,8 @@
     }
 
     .info-item {
-      background-color: #000000;
-      border: 1px solid #ff8c00;
+      background-color: var(--input-bg);
+      border: 1px solid var(--border-color);
       padding: 15px;
       border-radius: 8px;
     }
@@ -190,8 +213,8 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #ff8c00;
-      color: #000000;
+      background-color: var(--text-color);
+      color: var(--bg-color);
       padding: 12px 24px;
       border-radius: 8px;
       font-weight: bold;
@@ -200,18 +223,21 @@
     }
   </style>
 </head>
-<body>
+<body data-theme="dark">
 
-  <!-- Yan Menü -->
+  <!-- Sol Yan Menü -->
   <div class="sidebar">
-    <button class="nav-btn active" id="btn-home" onclick="openTab('home')">
+    <button class="nav-btn active" id="btn-home" onclick="openTab('home')" title="Ana Sayfa">
       <i class="fa-solid fa-house"></i>
     </button>
-    <button class="nav-btn" id="btn-support" onclick="openTab('support')">
+    <button class="nav-btn" id="btn-support" onclick="openTab('support')" title="Destek">
       <i class="fa-solid fa-headset"></i>
     </button>
-    <button class="nav-btn" id="btn-about" onclick="openTab('about')">
+    <button class="nav-btn" id="btn-about" onclick="openTab('about')" title="Hakkında">
       <i class="fa-solid fa-circle-info"></i>
+    </button>
+    <button class="nav-btn" id="btn-settings" onclick="openTab('settings')" title="Ayarlar">
+      <i class="fa-solid fa-gear"></i>
     </button>
   </div>
 
@@ -242,7 +268,6 @@
         <div>
           <i class="fa-solid fa-signal" style="font-size: 28px; margin-bottom: 8px;"></i>
           <h3>Sunucu durumu</h3>
-          <!-- Canlı mcstatus.io rozeti -->
           <img src="https://api.mcstatus.io/v2/widget/java/practicing-otc.tun.ply.gg" alt="Sunucu Durumu" style="max-width: 100%; border-radius: 8px; margin-top: 5px;">
         </div>
       </div>
@@ -287,6 +312,9 @@
           <li class="info-item">
             <div class="info-title"><i class="fa-solid fa-user-gear"></i> Kurucu</div>
             <p>ToraTsume</p>
+            <a href="https://www.youtube.com/@ToraTsumeEdits" target="_blank" class="btn" style="margin-top: 10px; padding: 8px 16px; font-size: 14px;">
+              <i class="fa-brands fa-youtube"></i> YouTube Kanalı
+            </a>
           </li>
           <li class="info-item">
             <div class="info-title"><i class="fa-solid fa-user-shield"></i> Adminler</div>
@@ -297,6 +325,20 @@
             <p>thenormalguy385, fontona, bokyiyenkopke</p>
           </li>
         </ul>
+      </div>
+    </div>
+
+    <!-- Ayarlar -->
+    <div id="settings" class="tab-content">
+      <div class="card">
+        <h2><i class="fa-solid fa-gear"></i> Site Ayarları</h2>
+        <p>Görünüm tercihinizi buradan değiştirebilirsiniz.</p>
+        
+        <div style="margin-top: 25px;">
+          <button class="btn" onclick="toggleTheme()">
+            <i class="fa-solid fa-circle-half-stroke"></i> Tema Değiştir (Aydınlık / Karanlık)
+          </button>
+        </div>
       </div>
     </div>
 
@@ -329,6 +371,15 @@
       setTimeout(function() {
         toast.style.display = "none";
       }, 2000);
+    }
+
+    function toggleTheme() {
+      var body = document.body;
+      if (body.getAttribute("data-theme") === "dark") {
+        body.setAttribute("data-theme", "light");
+      } else {
+        body.setAttribute("data-theme", "dark");
+      }
     }
   </script>
 </body>
