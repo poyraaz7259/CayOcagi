@@ -6,7 +6,6 @@
   <title>Çay Ocağı - Minecraft Sunucusu</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Tema Renk Değişkenleri */
     :root {
       --bg-color: #000000;
       --card-bg: #0a0a0a;
@@ -40,7 +39,6 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Sol Yan Menü */
     .sidebar {
       width: 80px;
       background-color: var(--sidebar-bg);
@@ -55,7 +53,6 @@
       left: 0;
       top: 0;
       z-index: 999;
-      transition: background-color 0.3s ease;
     }
 
     .nav-btn {
@@ -80,7 +77,6 @@
       box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
     }
 
-    /* İçerik Alanı */
     .main-content {
       margin-left: 80px;
       flex: 1;
@@ -109,7 +105,6 @@
       box-shadow: 0 0 20px rgba(255, 140, 0, 0.15);
       margin-bottom: 25px;
       text-align: center;
-      transition: background-color 0.3s ease;
     }
 
     h1, h2, h3 {
@@ -225,7 +220,6 @@
 </head>
 <body data-theme="dark">
 
-  <!-- Sol Yan Menü -->
   <div class="sidebar">
     <button class="nav-btn active" id="btn-home" onclick="openTab('home')" title="Ana Sayfa">
       <i class="fa-solid fa-house"></i>
@@ -241,10 +235,8 @@
     </button>
   </div>
 
-  <!-- Ana İçerik -->
   <div class="main-content">
 
-    <!-- Ana Sayfa -->
     <div id="home" class="tab-content active">
       <div class="card">
         <h1><i class="fa-solid fa-mug-hot"></i> Çay Ocağı</h1>
@@ -259,7 +251,6 @@
         </div>
       </div>
 
-      <!-- Güncellemeler / Duyurular Paneli -->
       <div class="card" style="text-align: left;">
         <h3><i class="fa-solid fa-bullhorn"></i> Duyurular & Güncellemeler</h3>
         <ul style="list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
@@ -282,7 +273,6 @@
       </div>
     </div>
 
-    <!-- Destek -->
     <div id="support" class="tab-content">
       <div class="card">
         <h2><i class="fa-solid fa-headset"></i> Destek talebi</h2>
@@ -308,7 +298,6 @@
       </div>
     </div>
 
-    <!-- Hakkında -->
     <div id="about" class="tab-content">
       <div class="card">
         <h2><i class="fa-solid fa-circle-info"></i> Sunucu hakkında</h2>
@@ -326,99 +315,5 @@
             </a>
           </li>
           <li class="info-item">
-            <div class="info-title"><i class="fa-solid fa-user-shield"></i> Adminler</div>
-            <p>BaySEROX, OrosPL</p>
-          </li>
-          <li class="info-item">
-            <div class="info-title"><i class="fa-solid fa-heart"></i> Teşekkürler</div>
-            <p>thenormalguy385, fontona, bokyiyenkopke</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Ayarlar -->
-    <div id="settings" class="tab-content">
-      <div class="card">
-        <h2><i class="fa-solid fa-gear"></i> Site Ayarları</h2>
-        <p>Görünüm tercihinizi buradan değiştirebilirsiniz.</p>
-        
-        <div style="margin-top: 25px;">
-          <button class="btn" onclick="toggleTheme()">
-            <i class="fa-solid fa-circle-half-stroke"></i> Tema Değiştir (Aydınlık / Karanlık)
-          </button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div id="toast" class="toast">Ip adresi kopyalandı!</div>
-
-  <script>
-    function openTab(tabName) {
-      var tabs = document.getElementsByClassName("tab-content");
-      for (var i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("active");
-      }
-
-      var btns = document.getElementsByClassName("nav-btn");
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].classList.remove("active");
-      }
-
-      document.getElementById(tabName).classList.add("active");
-      document.getElementById("btn-" + tabName).classList.add("active");
-    }
-
-    function copyIp() {
-      var ipText = document.getElementById("serverIp").innerText;
-      navigator.clipboard.writeText(ipText);
-      
-      var toast = document.getElementById("toast");
-      toast.style.display = "block";
-      setTimeout(function() {
-        toast.style.display = "none";
-      }, 2000);
-    }
-
-    function toggleTheme() {
-      var body = document.body;
-      if (body.getAttribute("data-theme") === "dark") {
-        body.setAttribute("data-theme", "light");
-      } else {
-        body.setAttribute("data-theme", "dark");
-      }
-    }
-  </script>
-</body>
-</html>
-
-}
-
-      document.getElementById(tabName).classList.add("active");
-      document.getElementById("btn-" + tabName).classList.add("active");
-    }
-
-    function copyIp() {
-      var ipText = document.getElementById("serverIp").innerText;
-      navigator.clipboard.writeText(ipText);
-      
-      var toast = document.getElementById("toast");
-      toast.style.display = "block";
-      setTimeout(function() {
-        toast.style.display = "none";
-      }, 2000);
-    }
-
-    function toggleTheme() {
-      var body = document.body;
-      if (body.getAttribute("data-theme") === "dark") {
-        body.setAttribute("data-theme", "light");
-      } else {
-        body.setAttribute("data-theme", "dark");
-      }
-    }
-  </script>
-</body>
-</html>
+            <div class="info-title"><i class="fa-solid fa-
+                                      
