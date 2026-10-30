@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Çay Ocağı - Minecraft Sunucusu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #000000;
+      color: #ff8c00;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* Sol Yan Menü */
+    .sidebar {
+      width: 80px;
+      background-color: #050505;
+      border-right: 2px solid #ff8c00;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 30px;
+      gap: 25px;
+      position: fixed;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      z-index: 999;
+    }
+
+    .nav-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: transparent;
+      border: 2px solid transparent;
+      color: #ff8c00;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background-color: #ff8c00;
+      color: #000000;
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+    }
+
+    /* İçerik Alanı */
+    .main-content {
+      margin-left: 80px;
+      flex: 1;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .tab-content {
+      display: none;
+      width: 100%;
+      max-width: 650px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .card {
+      background-color: #0a0a0a;
+      border: 1px solid #ff8c00;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.15);
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    h1, h2, h3 {
+      color: #ff8c00;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    p {
+      color: #ff8c00;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      background-color: #ff8c00;
+      color: #000000;
+      border: none;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .btn:hover {
+      background-color: #ffa500;
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
+    }
+
+    .ip-box {
+      background-color: #000000;
+      border: 1px dashed #ff8c00;
+      padding: 12px 20px;
+      border-radius: 8px;
+      display: inline-block;
+      margin: 15px 0;
+      font-family: monospace;
+      font-size: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #ff8c00;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      background-color: #000000;
+      border: 1px solid #ff8c00;
+      border-radius: 8px;
+      color: #ff8c00;
+      font-size: 15px;
+    }
+
+    .info-list {
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .info-item {
+      background-color: #000000;
+      border: 1px solid #ff8c00;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .info-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff8c00;
+      color: #000000;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Yan Menü -->
+  <div class="sidebar">
+    <button class="nav-btn active" id="btn-home" onclick="openTab('home')">
+      <i class="fa-solid fa-house"></i>
+    </button>
+    <button class="nav-btn" id="btn-support" onclick="openTab('support')">
+      <i class="fa-solid fa-headset"></i>
+    </button>
+    <button class="nav-btn" id="btn-about" onclick="openTab('about')">
+      <i class="fa-solid fa-circle-info"></i>
+    </button>
+  </div>
+
+  <!-- Ana İçerik -->
+  <div class="main-content">
+
+    <!-- Ana Sayfa -->
+    <div id="home" class="tab-content active">
+      <div class="card">
+        <h1><i class="fa-solid fa-mug-hot"></i> Çay Ocağı</h1>
+        <p>Minecraft sunucumuza hoş geldiniz. Hemen katılın ve maceraya başlayın.</p>
+        
+        <div style="margin: 20px 0;">
+          <div class="ip-box" id="serverIp">practicing-otc.tun.ply.gg</div>
+          <br>
+          <button class="btn" onclick="copyIp()">
+            <i class="fa-regular fa-copy"></i> Ip adresini kopyala
+          </button>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; justify-content: space-around;">
+        <div>
+          <i class="fa-solid fa-gamepad" style="font-size: 28px; margin-bottom: 8px;"></i>
+          <h3>Oyun modu</h3>
+          <p>Survival mod</p>
+        </div>
+        <div>
+          <i class="fa-solid fa-signal" style="font-size: 28px; margin-bottom: 8px;"></i>
+          <h3>Sunucu durumu</h3>
+          <p>Aktif</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Destek -->
+    <div id="support" class="tab-content">
+      <div class="card">
+        <h2><i class="fa-solid fa-headset"></i> Destek talebi</h2>
+        <p>Sorularınız veya şikayetleriniz için bize mesaj gönderin.</p>
+        
+        <!-- Mailto destek formu: Doğrudan poyraaz7259@gmail.com adresine yönlendirir -->
+        <form action="mailto:poyraaz7259@gmail.com" method="POST" enctype="text/plain" style="margin-top: 20px;">
+          <div class="form-group">
+            <label>Oyuncu adınız</label>
+            <input type="text" name="Oyuncu" required placeholder="Kullanıcı adınızı girin">
+          </div>
+          <div class="form-group">
+            <label>Konu</label>
+            <input type="text" name="Konu" required placeholder="Konu başlığı">
+          </div>
+          <div class="form-group">
+            <label>Mesajınız</label>
+            <textarea name="Mesaj" rows="4" required placeholder="Detayları buraya yazın"></textarea>
+          </div>
+          <button type="submit" class="btn">
+            <i class="fa-solid fa-paper-plane"></i> Gönder
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Hakkında -->
+    <div id="about" class="tab-content">
+      <div class="card">
+        <h2><i class="fa-solid fa-circle-info"></i> Sunucu hakkında</h2>
+        
+        <ul class="info-list">
+          <li class="info-item">
+            <div class="info-title"><i class="fa-solid fa-calendar-days"></i> Kuruluş tarihi</div>
+            <p>2026</p>
+          </li>
+          <li class="info-item">
+            <div class="info-title"><i class="fa-solid fa-user-gear"></i> Kurucu</div>
+            <p>ToraTsume</p>
+          </li>
+          <li class="info-item">
+            <div class="info-title"><i class="fa-solid fa-user-shield"></i> Adminler</div>
+            <p>BaySEROX, OrosPL</p>
+          </li>
+          <li class="info-item">
+            <div class="info-title"><i class="fa-solid fa-heart"></i> Teşekkürler</div>
+            <p>thenormalguy385, fontona, bokyiyenkopke</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="toast" class="toast">Ip adresi kopyalandı!</div>
+
+  <script>
+    function openTab(tabName) {
+      // Bütün sekmeleri gizle
+      var tabs = document.getElementsByClassName("tab-content");
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+      }
+
+      // Bütün butonların aktifliğini kaldır
+      var btns = document.getElementsByClassName("nav-btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove("active");
+      }
+
+      // Seçilen sekmeyi göster ve butonu aktif yap
+      document.getElementById(tabName).classList.add("active");
+      document.getElementById("btn-" + tabName).classList.add("active");
+    }
+
+    function copyIp() {
+      var ipText = document.getElementById("serverIp").innerText;
+      navigator.clipboard.writeText(ipText);
+      
+      var toast = document.getElementById("toast");
+      toast.style.display = "block";
+      setTimeout(function() {
+        toast.style.display = "none";
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
