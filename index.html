@@ -233,7 +233,7 @@
         </div>
       </div>
 
-      <div class="card" style="display: flex; justify-content: space-around;">
+      <div class="card" style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 15px;">
         <div>
           <i class="fa-solid fa-gamepad" style="font-size: 28px; margin-bottom: 8px;"></i>
           <h3>Oyun modu</h3>
@@ -242,7 +242,8 @@
         <div>
           <i class="fa-solid fa-signal" style="font-size: 28px; margin-bottom: 8px;"></i>
           <h3>Sunucu durumu</h3>
-          <p>Aktif</p>
+          <!-- Canlı mcstatus.io rozeti -->
+          <img src="https://api.mcstatus.io/v2/widget/java/practicing-otc.tun.ply.gg" alt="Sunucu Durumu" style="max-width: 100%; border-radius: 8px; margin-top: 5px;">
         </div>
       </div>
     </div>
@@ -253,7 +254,6 @@
         <h2><i class="fa-solid fa-headset"></i> Destek talebi</h2>
         <p>Sorularınız veya şikayetleriniz için bize mesaj gönderin.</p>
         
-        <!-- Mailto destek formu: Doğrudan poyraaz7259@gmail.com adresine yönlendirir -->
         <form action="mailto:poyraaz7259@gmail.com" method="POST" enctype="text/plain" style="margin-top: 20px;">
           <div class="form-group">
             <label>Oyuncu adınız</label>
@@ -306,19 +306,16 @@
 
   <script>
     function openTab(tabName) {
-      // Bütün sekmeleri gizle
       var tabs = document.getElementsByClassName("tab-content");
       for (var i = 0; i < tabs.length; i++) {
         tabs[i].classList.remove("active");
       }
 
-      // Bütün butonların aktifliğini kaldır
       var btns = document.getElementsByClassName("nav-btn");
       for (var i = 0; i < btns.length; i++) {
         btns[i].classList.remove("active");
       }
 
-      // Seçilen sekmeyi göster ve butonu aktif yap
       document.getElementById(tabName).classList.add("active");
       document.getElementById("btn-" + tabName).classList.add("active");
     }
@@ -336,4 +333,3 @@
   </script>
 </body>
 </html>
-
