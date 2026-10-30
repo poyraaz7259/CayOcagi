@@ -251,20 +251,21 @@
     <div id="support" class="tab-content">
       <div class="card">
         <h2><i class="fa-solid fa-headset"></i> Destek talebi</h2>
-        <p>Sorularınız veya yardım talepleriniz için bize mesaj gönderin.</p>
+        <p>Sorularınız veya şikayetleriniz için bize mesaj gönderin.</p>
         
-        <form onsubmit="sendSupport(event)" style="margin-top: 20px;">
+        <!-- Mailto destek formu: Doğrudan poyraaz7259@gmail.com adresine yönlendirir -->
+        <form action="mailto:poyraaz7259@gmail.com" method="POST" enctype="text/plain" style="margin-top: 20px;">
           <div class="form-group">
             <label>Oyuncu adınız</label>
-            <input type="text" required placeholder="Kullanıcı adınızı girin">
+            <input type="text" name="Oyuncu" required placeholder="Kullanıcı adınızı girin">
           </div>
           <div class="form-group">
             <label>Konu</label>
-            <input type="text" required placeholder="Konu başlığı">
+            <input type="text" name="Konu" required placeholder="Konu başlığı">
           </div>
           <div class="form-group">
             <label>Mesajınız</label>
-            <textarea rows="4" required placeholder="Detayları buraya yazın"></textarea>
+            <textarea name="Mesaj" rows="4" required placeholder="Detayları buraya yazın"></textarea>
           </div>
           <button type="submit" class="btn">
             <i class="fa-solid fa-paper-plane"></i> Gönder
@@ -332,14 +333,7 @@
         toast.style.display = "none";
       }, 2000);
     }
-
-    function sendSupport(e) {
-      e.preventDefault();
-      alert("Destek talebiniz gönderildi!");
-      e.target.reset();
-    }
   </script>
 </body>
-            </html>
+</html>
 
-        
