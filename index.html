@@ -13,6 +13,8 @@
       --text-color: #ff8c00;
       --border-color: #ff8c00;
       --input-bg: #000000;
+      --glow-effect: 0 0 20px rgba(255, 140, 0, 0.15);
+      --card-padding: 30px;
     }
     [data-theme="light"] {
       --bg-color: #f4f4f4;
@@ -21,6 +23,7 @@
       --text-color: #d35400;
       --border-color: #d35400;
       --input-bg: #f9f9f9;
+      --glow-effect: 0 0 15px rgba(211, 84, 0, 0.1);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; transition: 0.3s; }
@@ -30,11 +33,11 @@
     .main-content { margin-left: 80px; flex: 1; padding: 40px 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
     .tab-content { display: none; width: 100%; max-width: 650px; }
     .tab-content.active { display: block; }
-    .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; box-shadow: 0 0 20px rgba(255, 140, 0, 0.15); margin-bottom: 25px; text-align: center; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: var(--card-padding); box-shadow: var(--glow-effect); margin-bottom: 25px; text-align: center; transition: box-shadow 0.3s, padding 0.3s; }
     h1, h2, h3 { color: var(--text-color); margin-bottom: 15px; }
     h1 { font-size: 36px; display: flex; align-items: center; justify-content: center; gap: 12px; }
     p { color: var(--text-color); font-size: 16px; line-height: 1.6; }
-    .btn { background-color: var(--text-color); color: var(--bg-color); border: none; padding: 14px 28px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; margin-top: 15px; text-decoration: none; }
+    .btn { background-color: var(--text-color); color: var(--bg-color); border: none; padding: 14px 28px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; margin-top: 10px; text-decoration: none; width: 100%; justify-content: center; }
     .btn:hover { opacity: 0.9; box-shadow: 0 0 15px rgba(255, 140, 0, 0.6); }
     .ip-box { background-color: var(--input-bg); border: 1px dashed var(--border-color); padding: 12px 20px; border-radius: 8px; display: inline-block; margin: 15px 0; font-family: monospace; font-size: 18px; }
     .form-group { margin-bottom: 20px; text-align: left; }
@@ -63,15 +66,15 @@
         <div style="margin: 20px 0;">
           <div class="ip-box" id="serverIp">practicing-otc.tun.ply.gg</div>
           <br>
-          <button class="btn" onclick="copyIp()"><i class="fa-regular fa-copy"></i> Ip adresini kopyala</button>
+          <button class="btn" onclick="copyIp()" style="width: auto;"><i class="fa-regular fa-copy"></i> Ip adresini kopyala</button>
         </div>
       </div>
 
       <div class="card" style="text-align: left;">
         <h3><i class="fa-solid fa-bullhorn"></i> Duyurular & Güncellemeler</h3>
         <ul style="list-style-type: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+          <li><span style="font-weight: bold;">31 Ekim 2026:</span> Ayarlar sekmesine 3 yeni görünüm efekti eklendi!</li>
           <li><span style="font-weight: bold;">31 Ekim 2026:</span> Sunucu sürümü 1.21.11 olarak güncellendi!</li>
-          <li><span style="font-weight: bold;">30 Ekim 2026:</span> Duyurular paneli ve tema değiştirme özelliği eklendi!</li>
         </ul>
       </div>
 
@@ -127,7 +130,7 @@
           <li class="info-item">
             <div class="info-title"><i class="fa-solid fa-user-gear"></i> Kurucu</div>
             <p>ToraTsume</p>
-            <a href="https://www.youtube.com/@ToraTsumeEdits" target="_blank" class="btn" style="margin-top: 10px; padding: 8px 16px; font-size: 14px;">
+            <a href="https://www.youtube.com/@ToraTsumeEdits" target="_blank" class="btn" style="margin-top: 10px; padding: 8px 16px; font-size: 14px; width: auto;">
               <i class="fa-brands fa-youtube"></i> YouTube Kanalı
             </a>
           </li>
@@ -145,10 +148,21 @@
 
     <div id="settings" class="tab-content">
       <div class="card">
-        <h2><i class="fa-solid fa-gear"></i> Site Ayarları</h2>
-        <p>Görünüm tercihinizi buradan değiştirebilirsiniz.</p>
-        <div style="margin-top: 25px;">
-          <button class="btn" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Tema Değiştir (Aydınlık / Karanlık)</button>
+        <h2><i class="fa-solid fa-gear"></i> Görünüm & Efekt Ayarları</h2>
+        <p>Site deneyimini kişiselleştirmek için efektleri yönet.</p>
+        
+        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px;">
+          <button class="btn" onclick="toggleTheme()">
+            <i class="fa-solid fa-circle-half-stroke"></i> Tema Değiştir (Aydınlık / Karanlık)
+          </button>
+          
+          <button class="btn" onclick="toggleGlow()" id="glowBtn">
+            <i class="fa-solid fa-bolt"></i> Neon Parlama Efekti: Açık
+          </button>
+
+          <button class="btn" onclick="toggleCompact()" id="compactBtn">
+            <i class="fa-solid fa-compress"></i> Kompakt Mod (Dar Görünüm): Kapalı
+          </button>
         </div>
       </div>
     </div>
@@ -165,6 +179,7 @@
       document.getElementById(tabName).classList.add("active");
       document.getElementById("btn-" + tabName).classList.add("active");
     }
+
     function copyIp() {
       var ipText = document.getElementById("serverIp").innerText;
       navigator.clipboard.writeText(ipText);
@@ -172,12 +187,39 @@
       toast.style.display = "block";
       setTimeout(function() { toast.style.display = "none"; }, 2000);
     }
+
     function toggleTheme() {
       var body = document.body;
       if (body.getAttribute("data-theme") === "dark") {
         body.setAttribute("data-theme", "light");
       } else {
         body.setAttribute("data-theme", "dark");
+      }
+    }
+
+    let glowOn = true;
+    function toggleGlow() {
+      glowOn = !glowOn;
+      let btn = document.getElementById("glowBtn");
+      if (glowOn) {
+        document.documentElement.style.setProperty('--glow-effect', '0 0 20px rgba(255, 140, 0, 0.15)');
+        btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Neon Parlama Efekti: Açık';
+      } else {
+        document.documentElement.style.setProperty('--glow-effect', 'none');
+        btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Neon Parlama Efekti: Kapalı';
+      }
+    }
+
+    let compactOn = false;
+    function toggleCompact() {
+      compactOn = !compactOn;
+      let btn = document.getElementById("compactBtn");
+      if (compactOn) {
+        document.documentElement.style.setProperty('--card-padding', '18px');
+        btn.innerHTML = '<i class="fa-solid fa-compress"></i> Kompakt Mod (Dar Görünüm): Açık';
+      } else {
+        document.documentElement.style.setProperty('--card-padding', '30px');
+        btn.innerHTML = '<i class="fa-solid fa-compress"></i> Kompakt Mod (Dar Görünüm): Kapalı';
       }
     }
   </script>
